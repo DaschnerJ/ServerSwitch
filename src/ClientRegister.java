@@ -156,8 +156,14 @@ class client extends Thread {
                 if (line.equals("/quit")) {
                     break;
                 }
-                //Handle commands here
-                mh.command(line, this);
+                else if(line.startsWith("error"))
+                {
+                    ClientRegister.handler.message(line);
+                }
+                else {
+                    //Handle commands here
+                    mh.command(line, this);
+                }
             }
             synchronized (this) {
                 for (int i = 0; i < maxClientsCount; i++) {
